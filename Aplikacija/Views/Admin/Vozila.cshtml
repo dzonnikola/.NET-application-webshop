@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Aplikacija.Database.Vozilo>
+
+@{
+    ViewBag.Title = "Vozila";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Vozila
+        <a href="../Admin/DodajVozila" class="btn btn-info pull-right fa fa-plus">Dodaj novo</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID vozila</th>
+                        <th>Marka</th>
+                        <th>Model</th>
+                        <th>Na stanju</th>
+                        <th>Kolicina</th>
+                        <th>Cena</th>
+                        <th>Izmena
+                        </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>ID vozila</th>
+                        <th>Marka</th>
+                        <th>Model</th>
+                        <th>Na stanju</th>
+                        <th>Kolicina</th>
+                        <th>Cena</th>
+                        <th>Izmena</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.VoziloId</td>
+                            <td>@item.Marka</td>
+                            <td>@item.Model</td>
+                            <td>@item.IsActive</td>
+                            <td>@item.Kolicina</td>
+                            <td>@item.Cena</td>
+                            <td>
+                                @Html.ActionLink("Izmeni |", "EditVozila", new { productId = item.VoziloId })
+                                @Html.ActionLink("Obrisi", "ObrisiVozilo", new { productId = item.VoziloId })
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

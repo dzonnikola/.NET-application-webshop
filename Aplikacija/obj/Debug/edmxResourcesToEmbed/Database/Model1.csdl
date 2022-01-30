@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProdajaKamionaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Klijent">
+    <Key>
+      <PropertyRef Name="KlijentId" />
+    </Key>
+    <Property Name="KlijentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Slanjes" Relationship="Self.FK__Slanje__KlijentI__49C3F6B7" FromRole="Klijent" ToRole="Slanje" />
+    <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Korpa">
+    <Key>
+      <PropertyRef Name="KorpaId" />
+    </Key>
+    <Property Name="KorpaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VoziloId" Type="Int32" />
+    <Property Name="KlijentId" Type="Int32" />
+    <Property Name="StatusKorpeId" Type="Int32" />
+    <NavigationProperty Name="Vozilo" Relationship="Self.FK__Korpa__VoziloId__48CFD27E" FromRole="Korpa" ToRole="Vozilo" />
+  </EntityType>
+  <EntityType Name="Slanje">
+    <Key>
+      <PropertyRef Name="SlanjeId" />
+    </Key>
+    <Property Name="SlanjeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KlijentId" Type="Int32" />
+    <Property Name="Adresa" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Grad" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Zemlja" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NarudzbinaId" Type="Int32" />
+    <Property Name="Vrednost" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Placanje" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Klijent" Relationship="Self.FK__Slanje__KlijentI__49C3F6B7" FromRole="Slanje" ToRole="Klijent" />
+  </EntityType>
+  <EntityType Name="StatusKorpe">
+    <Key>
+      <PropertyRef Name="StatusKorpeId" />
+    </Key>
+    <Property Name="StatusKorpeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusKorpe1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Tbl_SlideImage">
+    <Key>
+      <PropertyRef Name="SlideId" />
+    </Key>
+    <Property Name="SlideId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SlideTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="SlideImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UlogaKlijent">
+    <Key>
+      <PropertyRef Name="UlogaKlijentaId" />
+    </Key>
+    <Property Name="UlogaKlijentaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KlijentId" Type="Int32" />
+    <Property Name="UlogaId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Uloge">
+    <Key>
+      <PropertyRef Name="UlogaId" />
+    </Key>
+    <Property Name="UlogaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImeUloge" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Vozilo">
+    <Key>
+      <PropertyRef Name="VoziloId" />
+    </Key>
+    <Property Name="VoziloId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Marka" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Model" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Opis" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Kolicina" Type="Int32" />
+    <Property Name="Cena" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Korpas" Relationship="Self.FK__Korpa__VoziloId__48CFD27E" FromRole="Vozilo" ToRole="Korpa" />
+    <Property Name="Slika" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK__Slanje__KlijentI__49C3F6B7">
+    <End Role="Klijent" Type="Self.Klijent" Multiplicity="0..1" />
+    <End Role="Slanje" Type="Self.Slanje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klijent">
+        <PropertyRef Name="KlijentId" />
+      </Principal>
+      <Dependent Role="Slanje">
+        <PropertyRef Name="KlijentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Korpa__VoziloId__48CFD27E">
+    <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="0..1" />
+    <End Role="Korpa" Type="Self.Korpa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozilo">
+        <PropertyRef Name="VoziloId" />
+      </Principal>
+      <Dependent Role="Korpa">
+        <PropertyRef Name="VoziloId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProdajaKamionaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Klijents" EntityType="Self.Klijent" />
+    <EntitySet Name="Korpas" EntityType="Self.Korpa" />
+    <EntitySet Name="Slanjes" EntityType="Self.Slanje" />
+    <EntitySet Name="StatusKorpes" EntityType="Self.StatusKorpe" />
+    <EntitySet Name="Tbl_SlideImage" EntityType="Self.Tbl_SlideImage" />
+    <EntitySet Name="UlogaKlijents" EntityType="Self.UlogaKlijent" />
+    <EntitySet Name="Uloges" EntityType="Self.Uloge" />
+    <EntitySet Name="Voziloes" EntityType="Self.Vozilo" />
+    <AssociationSet Name="FK__Slanje__KlijentI__49C3F6B7" Association="Self.FK__Slanje__KlijentI__49C3F6B7">
+      <End Role="Klijent" EntitySet="Klijents" />
+      <End Role="Slanje" EntitySet="Slanjes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Korpa__VoziloId__48CFD27E" Association="Self.FK__Korpa__VoziloId__48CFD27E">
+      <End Role="Vozilo" EntitySet="Voziloes" />
+      <End Role="Korpa" EntitySet="Korpas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

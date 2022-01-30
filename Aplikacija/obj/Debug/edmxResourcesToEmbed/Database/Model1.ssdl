@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProdajaKamionaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Klijent">
+    <Key>
+      <PropertyRef Name="KlijentId" />
+    </Key>
+    <Property Name="KlijentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="500" />
+    <Property Name="Password" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Korpa">
+    <Key>
+      <PropertyRef Name="KorpaId" />
+    </Key>
+    <Property Name="KorpaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VoziloId" Type="int" />
+    <Property Name="KlijentId" Type="int" />
+    <Property Name="StatusKorpeId" Type="int" />
+  </EntityType>
+  <EntityType Name="Slanje">
+    <Key>
+      <PropertyRef Name="SlanjeId" />
+    </Key>
+    <Property Name="SlanjeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KlijentId" Type="int" />
+    <Property Name="Adresa" Type="varchar" MaxLength="500" />
+    <Property Name="Grad" Type="varchar" MaxLength="500" />
+    <Property Name="Zemlja" Type="varchar" MaxLength="50" />
+    <Property Name="PK" Type="varchar" MaxLength="50" />
+    <Property Name="NarudzbinaId" Type="int" />
+    <Property Name="Vrednost" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Placanje" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="StatusKorpe">
+    <Key>
+      <PropertyRef Name="StatusKorpeId" />
+    </Key>
+    <Property Name="StatusKorpeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusKorpe" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Tbl_SlideImage">
+    <Key>
+      <PropertyRef Name="SlideId" />
+    </Key>
+    <Property Name="SlideId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SlideTitle" Type="varchar" MaxLength="500" />
+    <Property Name="SlideImage" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="UlogaKlijent">
+    <Key>
+      <PropertyRef Name="UlogaKlijentaId" />
+    </Key>
+    <Property Name="UlogaKlijentaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KlijentId" Type="int" />
+    <Property Name="UlogaId" Type="int" />
+  </EntityType>
+  <EntityType Name="Uloge">
+    <Key>
+      <PropertyRef Name="UlogaId" />
+    </Key>
+    <Property Name="UlogaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImeUloge" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Vozilo">
+    <Key>
+      <PropertyRef Name="VoziloId" />
+    </Key>
+    <Property Name="VoziloId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Marka" Type="varchar" MaxLength="500" />
+    <Property Name="Model" Type="varchar" MaxLength="500" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Opis" Type="varchar" MaxLength="500" />
+    <Property Name="Kolicina" Type="int" />
+    <Property Name="Cena" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Slika" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <Association Name="FK__Korpa__VoziloId__48CFD27E">
+    <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="0..1" />
+    <End Role="Korpa" Type="Self.Korpa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vozilo">
+        <PropertyRef Name="VoziloId" />
+      </Principal>
+      <Dependent Role="Korpa">
+        <PropertyRef Name="VoziloId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Slanje__KlijentI__49C3F6B7">
+    <End Role="Klijent" Type="Self.Klijent" Multiplicity="0..1" />
+    <End Role="Slanje" Type="Self.Slanje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klijent">
+        <PropertyRef Name="KlijentId" />
+      </Principal>
+      <Dependent Role="Slanje">
+        <PropertyRef Name="KlijentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProdajaKamionaModelStoreContainer">
+    <EntitySet Name="Klijent" EntityType="Self.Klijent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Korpa" EntityType="Self.Korpa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Slanje" EntityType="Self.Slanje" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StatusKorpe" EntityType="Self.StatusKorpe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_SlideImage" EntityType="Self.Tbl_SlideImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UlogaKlijent" EntityType="Self.UlogaKlijent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uloge" EntityType="Self.Uloge" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vozilo" EntityType="Self.Vozilo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Korpa__VoziloId__48CFD27E" Association="Self.FK__Korpa__VoziloId__48CFD27E">
+      <End Role="Vozilo" EntitySet="Vozilo" />
+      <End Role="Korpa" EntitySet="Korpa" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Slanje__KlijentI__49C3F6B7" Association="Self.FK__Slanje__KlijentI__49C3F6B7">
+      <End Role="Klijent" EntitySet="Klijent" />
+      <End Role="Slanje" EntitySet="Slanje" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

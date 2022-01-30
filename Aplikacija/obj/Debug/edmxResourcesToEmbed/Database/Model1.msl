@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProdajaKamionaModelStoreContainer" CdmEntityContainer="ProdajaKamionaEntities">
+    <EntitySetMapping Name="Klijents">
+      <EntityTypeMapping TypeName="ProdajaKamionaModel.Klijent">
+        <MappingFragment StoreEntitySet="Klijent">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="KlijentId" ColumnName="KlijentId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Korpas">
+      <EntityTypeMapping TypeName="ProdajaKamionaModel.Korpa">
+        <MappingFragment StoreEntitySet="Korpa">
+          <ScalarProperty Name="KorpaId" ColumnName="KorpaId" />
+          <ScalarProperty Name="VoziloId" ColumnName="VoziloId" />
+          <ScalarProperty Name="KlijentId" ColumnName="KlijentId" />
+          <ScalarProperty Name="StatusKorpeId" ColumnName="StatusKorpeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Slanjes">
+      <EntityTypeMapping TypeName="ProdajaKamionaModel.Slanje">
+        <MappingFragment StoreEntitySet="Slanje">
+          <ScalarProperty Name="SlanjeId" ColumnName="SlanjeId" />
+          <ScalarProperty Name="KlijentId" ColumnName="KlijentId" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Grad" ColumnName="Grad" />
+          <ScalarProperty Name="Zemlja" ColumnName="Zemlja" />
+          <ScalarProperty Name="PK" ColumnName="PK" />
+          <ScalarProperty Name="NarudzbinaId" ColumnName="NarudzbinaId" />
+          <ScalarProperty Name="Vrednost" ColumnName="Vrednost" />
+          <ScalarProperty Name="Placanje" ColumnName="Placanje" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusKorpes">
+      <EntityTypeMapping TypeName="ProdajaKamionaModel.StatusKorpe">
+        <MappingFragment StoreEntitySet="StatusKorpe">
+          <ScalarProperty Name="StatusKorpeId" ColumnName="StatusKorpeId" />
+          <ScalarProperty Name="StatusKorpe1" ColumnName="StatusKorpe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_SlideImage">
+      <EntityTypeMapping TypeName="ProdajaKamionaModel.Tbl_SlideImage">
+        <MappingFragment StoreEntitySet="Tbl_SlideImage">
+          <ScalarProperty Name="SlideId" ColumnName="SlideId" />
+          <ScalarProperty Name="SlideTitle" ColumnName="SlideTitle" />
+          <ScalarProperty Name="SlideImage" ColumnName="SlideImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UlogaKlijents">
+      <EntityTypeMapping TypeName="ProdajaKamionaModel.UlogaKlijent">
+        <MappingFragment StoreEntitySet="UlogaKlijent">
+          <ScalarProperty Name="UlogaKlijentaId" ColumnName="UlogaKlijentaId" />
+          <ScalarProperty Name="KlijentId" ColumnName="KlijentId" />
+          <ScalarProperty Name="UlogaId" ColumnName="UlogaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uloges">
+      <EntityTypeMapping TypeName="ProdajaKamionaModel.Uloge">
+        <MappingFragment StoreEntitySet="Uloge">
+          <ScalarProperty Name="UlogaId" ColumnName="UlogaId" />
+          <ScalarProperty Name="ImeUloge" ColumnName="ImeUloge" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Voziloes">
+      <EntityTypeMapping TypeName="ProdajaKamionaModel.Vozilo">
+        <MappingFragment StoreEntitySet="Vozilo">
+          <ScalarProperty Name="Slika" ColumnName="Slika" />
+          <ScalarProperty Name="VoziloId" ColumnName="VoziloId" />
+          <ScalarProperty Name="Marka" ColumnName="Marka" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+          <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+          <ScalarProperty Name="Cena" ColumnName="Cena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

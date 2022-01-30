@@ -1,0 +1,101 @@
+﻿@model Aplikacija.Models.Home.HomeIndexViewModel
+@{
+    ViewBag.Title = "Početna stranica - ProdajaKamiona.com";
+}
+
+<div id="themeSlider" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#themeSlider" data-slide-to="0" class="active"></li>
+        <li data-target="#themeSlider" data-slide-to="1"></li>
+        <li data-target="#themeSlider" data-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="imgOverlay"></div>
+            <img style="height:420px; width:100%;" src="../Images/truck_image_1.jpg" alt="Prvi slajd">
+            <div class="carousel-caption">
+                <h3>Vrhunski kvalitet</h3>
+                <p>Sva vozila u našoj ponudi su vozila vrhunskog kvaliteta i prve klase.</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img style="height:420px; width:100%;" src="../Images/truck_image_2.png" alt="Drugi slajd">
+            <div class="carousel-caption">
+                <h3>Povoljna cena</h3>
+                <p>Sva vozila u našoj ponudi imaju jako pristupačne i povoljne cene.</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img style="height:420px; width:100%;" src="../Images/truck_image_3.jpg" alt="Treci slajd">
+            <div class="carousel-caption">
+                <h3>Uvek tu za vas</h3>
+                <p>Za sve informacije i pitanja, uvek smo dostupni za vas.</p>
+            </div>
+        </div>
+    </div>
+
+    <a class="left carousel-control" href="#themeSlider" data-slide="prev">
+        <span class="fa fa-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#themeSlider" data-slide="next">
+        <span class="fa fa-chevron-right"></span>
+    </a>
+</div>
+
+<div class="olContent f1"> <h2 style="color:black;">Pretraži ponudu</h2></div>
+<form method="post">
+    <div class="olSearch fr">
+        <input type="text" name="search" placeholder="Unesite kljucne reci" class="inputComn houseText form-control" />
+        <div class="searchB">
+            <button type="submit" class="searchBtn">
+                Pretraži
+            </button>
+        </div>
+    </div>
+
+</form>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header">
+            <h2>Vozila u prodaji <small>popularno</small></h2>
+        </div>
+    </div>
+</div>
+
+<div class="row product-containter">
+    @foreach (var item in Model.ListaVozila)
+    {
+        <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom: 8px;">
+            <div class="thumbnail product-item" style="height:400px">
+                <img class="img-responsive" title="Pogledaj vise" style="cursor:pointer; height:160px; width:260px;"
+                     src="~/VozilaSlike/@item.Slika" />
+
+
+                <div class="caption">
+                    <h4>@item.Marka @item.Model</h4>
+                    <p><strong>@item.Cena€</strong></p>
+                    <p>
+                        @if (item.Kolicina > 0)
+                        {
+                            using (Html.BeginForm("DodajUKorpu", "Home", new { productId = item.VoziloId }, FormMethod.Post))
+                            {
+                                <button type="submit" class="pull-right"><i class="fa fa-shopping-cart"></i></button>
+                            }
+                        <p style="color: green;"><strong>Na stanju</strong></p>
+                    }
+                    else
+                    {
+                        <p style="color: red;"><strong>Nema na stanju</strong></p>
+                    }
+                        <p>Opis vozila:</p>
+                        <p>@item.Opis</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+</div>
